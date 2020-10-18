@@ -1,0 +1,10 @@
+*.user
+
+.vs/
+packages/
+
+vmath/build/
+vmath/intermediate/
+
+test/build/
+test/intermediate/
