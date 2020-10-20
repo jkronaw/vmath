@@ -494,18 +494,25 @@ Matrix3 Matrix3::DualMatrix(const Vector3& vec) {
 		-vec.y, vec.x, 0.0);
 }
 
-Matrix4 Matrix4::ScalingMatrix(float sx, float sy, float sz) {
+Matrix4 Matrix4::CreateScale(float sx, float sy, float sz) {
 	return Matrix4(
 		sx, 0.0, 0.0, 0.0,
 		0.0, sy, 0.0, 0.0,
 		0.0, 0.0, sz, 0.0,
 		0.0, 0.0, 0.0, 1.0);
 }
-Matrix4 Matrix4::TranslationMatrix(float tx, float ty, float tz) {
+Matrix4 Matrix4::CreateTranslation(float tx, float ty, float tz) {
 	return Matrix4(
 		1.0, 0.0, 0.0, tx,
 		0.0, 1.0, 0.0, ty,
 		0.0, 0.0, 1.0, tz,
+		0.0, 0.0, 0.0, 1.0);
+}
+Matrix4 Matrix4::CreateTranslation(const Vector3& vec) {
+	return Matrix4(
+		1.0, 0.0, 0.0, vec.x,
+		0.0, 1.0, 0.0, vec.y,
+		0.0, 0.0, 1.0, vec.z,
 		0.0, 0.0, 0.0, 1.0);
 }
 Matrix4 Matrix4::CreateRotationX(float theta) {

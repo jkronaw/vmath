@@ -1,14 +1,28 @@
 #include "vector.h"
 
+/* ------ helper ------ */
+bool floatEquals(float f1, float f2) {
+	return fabs(f1 - f2) < EPSILON;
+}
+
 /* ------ constructors ------ */
 Vector2::Vector2(float x, float y) : x(x), y(y) { }
 Vector3::Vector3(float x, float y, float z) : x(x), y(y), z(z) { }
 Vector4::Vector4(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) { }
 
 Vector3::Vector3(const Vector4& vector) {
-	y = vector.y / vector.w;
-	x = vector.x / vector.w;
-	z = vector.z / vector.w;
+	if (floatEquals(vector.z, 0.0))
+	{
+		y = vector.y;
+		x = vector.x;
+		z = vector.z;
+	}
+	else
+	{
+		y = vector.y / vector.w;
+		x = vector.x / vector.w;
+		z = vector.z / vector.w;
+	}
 }
 Vector4::Vector4(const Vector3& vector) {
 	x = vector.x;
@@ -191,10 +205,6 @@ Vector4& Vector4::operator/=(const float scalar) {
 }
 
 /* ------ comparison operators ------ */
-bool floatEquals(float f1, float f2) {
-	return fabs(f1 - f2) < EPSILON;
-}
-
 bool Vector2::operator==(const Vector2& vector) const {
 	return floatEquals(x, vector.x) && floatEquals(y, vector.y);
 }

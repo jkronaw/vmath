@@ -172,8 +172,9 @@ struct Matrix4 {
 
 	// special matrices
 	static Matrix4 IdentityMatrix();
-	static Matrix4 ScalingMatrix(float, float, float);
-	static Matrix4 TranslationMatrix(float, float, float);
+	static Matrix4 CreateScale(float, float, float);
+	static Matrix4 CreateTranslation(float, float, float);
+	static Matrix4 CreateTranslation(const Vector3&);
 	static Matrix4 CreateRotationX(float);
 	static Matrix4 CreateRotationY(float);
 	static Matrix4 CreateRotationZ(float);
