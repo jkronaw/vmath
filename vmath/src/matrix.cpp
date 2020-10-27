@@ -43,6 +43,12 @@ Matrix4::Matrix4(const Vector4& v1, const Vector4& v2, const Vector4& v3, const 
 	rows[2] = v3;
 	rows[3] = v4;
 }
+Matrix4::Matrix4(const Matrix3& mat) {
+	rows[0] = Vector4(mat.rows[0], 0);
+	rows[1] = Vector4(mat.rows[1], 0);
+	rows[2] = Vector4(mat.rows[2], 0);
+	rows[3] = Vector4(0, 0, 0, 1);
+}
 
 /* ------ scalar operators ------*/
 Matrix2 Matrix2::operator+(const float scalar) const {
@@ -535,6 +541,18 @@ Matrix4 Matrix4::CreateRotationZ(float theta) {
 		sin(theta), cos(theta), 0.0, 0.0,
 		0.0, 0.0, 1.0, 0.0,
 		0.0, 0.0, 0.0, 1.0);
+}
+
+Matrix4 Matrix4::CreateRotation(float theta, const Vector3& axis) {
+	Vector3 k = axis.normalized();
+
+	Matrix3 dualMatrix = Matrix3::DualMatrix(k);
+	
+	Matrix3 rotation = Matrix3::IdentityMatrix() 
+		+ sin(theta) * dualMatrix
+		+ (1 - cos(theta)) * dualMatrix.multiply(dualMatrix);
+
+	return Matrix4(rotation);
 }
 
 /* ------ IO ------ */

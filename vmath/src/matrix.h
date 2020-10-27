@@ -137,6 +137,7 @@ struct Matrix4 {
 			float, float, float, float,
 			float, float, float, float);
 	Matrix4(const Vector4&, const Vector4&, const Vector4&, const Vector4&);
+	Matrix4(const Matrix3&);
 	Matrix4(const Matrix4&) = default; // copy constructor
 	~Matrix4() = default;
 
@@ -178,6 +179,7 @@ struct Matrix4 {
 	static Matrix4 CreateRotationX(float);
 	static Matrix4 CreateRotationY(float);
 	static Matrix4 CreateRotationZ(float);
+	static Matrix4 CreateRotation(float, const Vector3&);
 
 	// fields
 	Vector4 rows[4];
