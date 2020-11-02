@@ -318,6 +318,11 @@ void Vector4::cleanToZero() {
 	}
 }
 
+/* ------ special vectors ------ */
+Vector3 Vector3::up() {
+	return Vector3(0, 1, 0);
+}
+
 /* ------ IO ------ */
 std::istream& operator>>(std::istream& is, Vector2& vector)
 {

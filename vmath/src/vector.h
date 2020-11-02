@@ -95,6 +95,9 @@ struct Vector3  {
 	void normalize();
 	void cleanToZero();
 
+	// special vectors
+	static Vector3 up();
+
 	// fields
 	union {
 		float x, r = 0.0;
