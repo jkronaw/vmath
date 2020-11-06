@@ -10,39 +10,40 @@
 #define DEGREES_TO_RADIANS 0.01745329251994329547
 #define RADIANS_TO_DEGREES 57.29577951308232185913
 
-const float qThreshold = (float)1.0e-5;
+const float EPSILON = (float)1.0e-5;
 
 struct Quaternion
 {
 	Quaternion() = default;
 	Quaternion(float, float, float, float);
+	Quaternion(float, const Vector3&);
 	Quaternion(const Quaternion&) = default;
 	~Quaternion() = default;
 
-	// quaternion operation
+	// quaternion operations
+	void normalize();
+	Quaternion normalized() const;
+
+	Quaternion conjugate() const;
+	Quaternion inverse() const;
+
 	float norm();
-	Quaternion normalize();
-	Quaternion conjugate();
-	Quaternion inverse();
-	float quadrance();
-	void clean();
+	float quadrance() const;
 
-	// addition and soustraction
+	// quaternion multiplication
+	Quaternion multiply(const Quaternion&) const;
+
+	// operators
 	Quaternion operator+(const Quaternion&);
-	//Quaternion operator-(const Quaternion&);
-
-	//multiplication
-	Quaternion multiply(const Quaternion&);
-	Quaternion multiply(float);
+	Quaternion operator*(float) const;
+	Quaternion operator/(float) const;
 
 	// equality
-	bool operator==(Quaternion&);
-	bool operator!=(Quaternion&);
+	bool operator==(const Quaternion&) const;
+	bool operator!=(const Quaternion&) const;
 
-	void toAngleAxis(float&, Vector4&);
-	Matrix4 GLRotationMatrix();
-
-
+	void toAngleAxis(float&, Vector3&) const;
+	Matrix4 GLRotationMatrix() const;
 
 	// fields
 	float t = 0.0;
@@ -53,12 +54,6 @@ struct Quaternion
 
 // output
 std::ostream& operator<<(std::ostream&, const Quaternion&);
-std::ostream& printAngleAxis(std::ostream&, Quaternion&);
-
-Quaternion qFromAngleAxis(float theta, Vector4 axis);
 
 Quaternion qLerp(const Quaternion& q0, const Quaternion& q1, float k);
 Quaternion qSlerp(const Quaternion& q0, const Quaternion& q1, float k);
-
-Quaternion qmultiply(const Quaternion&, const Quaternion&);
-Quaternion qmultiply(const Quaternion&, float);
