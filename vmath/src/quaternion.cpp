@@ -5,10 +5,8 @@ Quaternion::Quaternion(float t, float x, float y, float z) : t(t), x(x), y(y), z
 Quaternion::Quaternion(float theta, const Vector3& axis) {
 	Vector3 normalized = axis.normalized();
 
-	float a = theta * (float)DEGREES_TO_RADIANS;
-
-	t = cos(a / 2.0f);
-	float s = sin(a / 2.0f);
+	t = cos(theta / 2.0f);
+	float s = sin(theta / 2.0f);
 	x = normalized.x * s;
 	y = normalized.y * s;
 	z = normalized.z * s;
@@ -16,10 +14,7 @@ Quaternion::Quaternion(float theta, const Vector3& axis) {
 	normalize();
 }
 
-void Quaternion::normalize() {
-	*this = *this / norm();
-}
-
+void Quaternion::normalize() { *this = *this / norm(); }
 Quaternion Quaternion::normalized() const {
 	Quaternion q = *this;
 	q.normalize();
@@ -59,17 +54,17 @@ Quaternion Quaternion::operator*(float s) const {
 }
 Quaternion Quaternion::operator/(float s) const {
 	Quaternion q;
-	q.t = s / t;
-	q.x = s / x;
-	q.y = s / y;
-	q.z = s / z;
+	q.t = t / s;
+	q.x = x / s;
+	q.y = y / s;
+	q.z = z / s;
 	return q;
 }
 
 void Quaternion::toAngleAxis(float& theta, Vector3& axis) const {
 	Quaternion qn = normalized();
 
-	theta = 2.0f * acos(qn.t) * (float)RADIANS_TO_DEGREES;
+	theta = 2.0f * acos(qn.t);
 	float s = sqrt(1.0f - qn.t * qn.t);
 	if (s < EPSILON) {
 		axis.x = 1.0f;

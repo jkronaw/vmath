@@ -7,11 +7,6 @@
 #include <string>
 #include <cassert>
 
-#define DEGREES_TO_RADIANS 0.01745329251994329547
-#define RADIANS_TO_DEGREES 57.29577951308232185913
-
-const float EPSILON = (float)1.0e-5;
-
 struct Quaternion
 {
 	Quaternion() = default;

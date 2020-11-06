@@ -270,9 +270,9 @@ Vector3 Vector3::crossProduct(const Vector3& vector) const {
 	);
 }
 
-Vector2 Vector2::normalized() const { return (*this) / this->magnitude(); }
-Vector3 Vector3::normalized() const { return (*this) / this->magnitude(); }
-Vector4 Vector4::normalized() const { return (*this) / this->magnitude(); }
+Vector2 Vector2::normalized() const { return (*this) / magnitude(); }
+Vector3 Vector3::normalized() const { return (*this) / magnitude(); }
+Vector4 Vector4::normalized() const { return (*this) / magnitude(); }
 
 void Vector2::normalize() { (*this) = (*this) / magnitude(); }
 void Vector3::normalize() { (*this) = (*this) / magnitude(); }
