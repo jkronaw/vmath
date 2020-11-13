@@ -46,7 +46,7 @@ struct Matrix2 {
 	void transpose();
 
 	// OpenGL
-	void convertToOpenGL(float*);
+	void convertToOpenGL(float*) const;
 
 	// special matrices
 	static Matrix2 IdentityMatrix();
@@ -108,7 +108,7 @@ struct Matrix3 {
 	void transpose();
 
 	// OpenGL
-	void convertToOpenGL(float*);
+	void convertToOpenGL(float*) const;
 
 	// special matrices
 	static Matrix3 IdentityMatrix();
@@ -169,7 +169,7 @@ struct Matrix4 {
 	void transpose();
 
 	// OpenGL
-	void convertToOpenGL(float*);
+	void convertToOpenGL(float*) const;
 
 	// special matrices
 	static Matrix4 IdentityMatrix();

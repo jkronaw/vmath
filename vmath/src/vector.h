@@ -44,8 +44,12 @@ struct Vector2 {
 	void cleanToZero();
 
 	// fields
-	float x = 0.0;
-	float y = 0.0;
+	union {
+		float x, u = 0.0;
+	};
+	union {
+		float y, v = 0.0;
+	};
 };
 
 // left side scalar operators

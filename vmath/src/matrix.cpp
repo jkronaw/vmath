@@ -439,13 +439,13 @@ void Matrix3::transpose() { (*this) = transposed(); }
 void Matrix4::transpose() { (*this) = transposed(); }
 
 /* ------ OpenGL ------*/
-void Matrix2::convertToOpenGL(float* out) {
+void Matrix2::convertToOpenGL(float* out) const {
 	out[0] = rows[0].x;
 	out[1] = rows[1].x;
 	out[2] = rows[0].y;
 	out[3] = rows[1].y;
 }
-void Matrix3::convertToOpenGL(float* out) {
+void Matrix3::convertToOpenGL(float* out) const {
 	out[0] = rows[0].x;
 	out[1] = rows[1].x;
 	out[2] = rows[2].x;
@@ -456,7 +456,7 @@ void Matrix3::convertToOpenGL(float* out) {
 	out[7] = rows[1].z;
 	out[8] = rows[2].z;
 }
-void Matrix4::convertToOpenGL(float* out) {
+void Matrix4::convertToOpenGL(float* out) const {
 	out[0] = rows[0].x;
 	out[1] = rows[1].x;
 	out[2] = rows[2].x;
