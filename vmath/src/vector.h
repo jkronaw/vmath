@@ -185,3 +185,6 @@ Vector4 operator/(const float, const Vector4&);
 // IO
 std::istream& operator>>(std::istream&, Vector4&);
 std::ostream& operator<<(std::ostream&, const Vector4&);
+
+// interpolation
+Vector3 vLerp(const Vector3&, const Vector3&, float);

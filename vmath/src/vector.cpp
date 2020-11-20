@@ -361,3 +361,9 @@ std::ostream& operator<<(std::ostream& os, const Vector4& vector)
 	os << "[" << vector.x << ", " << vector.y << ", " << vector.z << ", " << vector.w << "]";
 	return os;
 }
+
+/* ------ interpolation ------ */
+Vector3 vLerp(const Vector3& v1, const Vector3& v2, float k)
+{
+	return v1 * (1 - k) + v2 * k;
+}
